@@ -145,6 +145,16 @@ pantry: List[PantryItem] = [
     )
 ]
 
+# Root endpoint for Railway healthcheck
+@app.get("/")
+def root():
+    return {"message": "AI-Powered Meal Planner API", "status": "healthy", "version": "1.0.0"}
+
+# Health check endpoint
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "timestamp": "2024-01-01"}
+
 @app.get("/pantry", response_model=List[PantryItem])
 def get_pantry():
     return pantry
